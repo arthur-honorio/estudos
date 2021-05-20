@@ -13,8 +13,11 @@ dentro dos parametros exigidos. Em algumas situações um servidor pode ser um c
 
 - <strong> URL </strong> Uniform Resource Locator: fornece o local onde o recurso está armazenado.
 Este 'endereço' é separado em elementos menores para especificar exatamente a localização. Destes elemetos, 2 são obrigatórios: o Protocolo e o Domínio.
+
 <strong> Protocolo </strong>: é o primeiro elemento do URL e indica qual o protocolo utilizado para acessar o recurso desse endereço. Ele adicionado automaticamente quando não especificado pelo usuário.
+
 <strong> Domínio </strong>: é o nome ao qual o IP é assossiado. Ex.: rocketseat.com, google.com, youtube.com .
+
 <strong> TLD </strong>: Top Level Domain é o fim do domínio. Ex. com, br, com.br, uk, space.
 
 Outros elementos são opcionais:
