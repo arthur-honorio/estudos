@@ -1,34 +1,50 @@
-# Anotações sobre http
-
-## Hiper Text Transfer Protocol.
+# Hiper Text Transfer Protocol.
 
 Se divide em requisições e respostas, e lida com a troca de demandas/resultados entre um cliente e um servidor.
 
 - Cliente: aquele que solicita um recurso a um servidor.
 
-- Servidor: aquele que guarda recursos e os envia quando solicitado corretamente,
-dentro dos parametros exigidos. Em algumas situações um servidor pode ser um cliente.
+- Servidor: aquele que guarda recursos e os envia quando solicitado corretamente, dentro dos parametros exigidos. Em algumas situações um servidor pode ser um cliente.
 
-<strong> URI </strong> Uniform Resource Indentity, tem dois tipos de identificador:
+## Requests / Responses
 
-###URL
+Toda comunição no protocolo HTTP é feita através de pedidos e repsostas. O cliente faz um pedido e o servidor responde com o solicitado, se o pedido for válido, ou com a mensagem de erro, caso o pedido não seja válido.
 
-Uniform Resource Locator: fornece o local onde o recurso está armazenado.
-Este 'endereço' é separado em elementos menores para especificar exatamente a localização. Destes elemetos, 2 são obrigatórios: o Protocolo e o Domínio.
+Nas mensagens dessa comunicação existe uma divisão: Cabeçalho (headers) e Corpo (body).
 
-<strong> Protocolo </strong>: é o primeiro elemento do URL e indica qual o protocolo utilizado para acessar o recurso desse endereço. Ele adicionado automaticamente quando não especificado pelo usuário.
+No header, a linha inicial, conhecida como start-line, é a que indica o que deve ser feito no caso da request, ou o código do resultado da request no caso da response. Existem ainda muitos dados que são enviados e recebidos em formato *propriedade / valor* e que complementam a linha inicial. São dados como tamanho, formato de recurso, idade, localização de redirecionamento, entre outros.
 
-<strong> Domínio </strong>: é o nome ao qual o IP é assossiado. Ex.: rocketseat.com, google.com, youtube.com .
+O corpo nem sempre está presente na mensagem - depende do verbo HTTP utilizado -, é separado do cabeçalho por uma linha em branco e contém conteúdos fornecidos pelo cliente ou pelo servidor, como mensagens de retorno, conteúdo a ser adicionado no servidor, entre outros.
 
-<strong> TLD </strong>: Top Level Domain é o fim do domínio. Ex. com, br, com.br, uk, space.
+### Request
 
-Outros elementos são opcionais:
-- <strong> Subdomínio </strong>: alguns url's exitem o subdomínio, mas ele não é um elemento obrigatório a todos. Ex.: www.
-- <strong> Path </strong>: é o que vem depois do TLD. Começa com uma barra "/" e especifíca o caminho exato para encontrar o recurso. Ex.: rocketseat.com.br/blog.
+A request é iniciada com o verbo (method) HTTP, seguido da URL e do protocolo, com a respectiva versão, que será utilizado na comunicação. 
+Abaixo, sem linha em branco vêm os metadados, como o navegador que está fazendo a request e o tipo de arquivo que aguardado como response.
 
-Obs.: A barra "/" indica a home do domínio digitado e é incluída automaticamente pelo navegador.
+##### Methods
 
-###URN 
-Uniform Resource Name: é um parâmetro único para indicar o nome único do recurso, não informa a localização do mesmo.
-Ex.: isbn (é um número único de registro internacional que é associado a qualquer publicação cadastrada neste banco de dados).
+São classificados como seguros ou não seguros (safe) e idempotentes (idempotent) ou não idempotentes.
 
+- *Safe:* são os métodos que solicitam somente uma leitura, não alteram nada no servidor. Os principais são: GET, HEAD e OPTION. Já os não seguros são aqueles que alteram informações no servidor, colocando, alterando ou  deletando dados do mesmo, por exemplo. Os principais são: POST, PUT, PATCH E DELETE.
+- *Idempotent:* são os métodos que recebem sempre a mesma resposta do servidor, independentemente da quantidade de solicitações feitas. O GET, o HEAD, o PUT e o DELETE sempre que utilizados receberão a mesma resposta do servidor. Os não idempotentes são aqueles que recebem respostas variáveis.
+
+Seguem os principais verbos:
+- *OPTION:* retorna quais os métodos estão disponíveis para interação com um recurso. 
+- *GET:* solicita um recurso ao servidor, como o HTML duma página, por exemplo.
+- *HEAD:* solicita somente o cabeçalho do recurso especificado.
+- *POST:* cria e cadastra dados em um servidor.
+- *PUT:* também cria e cadastra dados, mas é mais utilizado para fazer a substituição do conteúdo.
+- *PATCH:* é mais utilizado para alterar somente uma parte de um recurso.
+- *DELETE:* deleta o recurso especificado.
+
+### Response
+
+Começa com o protocolo solicitado na request seguido do status que indica o que foi retornado dessa solicitação.
+
+São 4 categorias principais de status messages e cada categoria tem várias possibilidades diferentes:
+
+- *100:* indica continuidade, a requisição do cliente pode continuar seguindo sua rota.
+- *200:* indica que tudo deu certo, o recurso foi encontrado e está sendo retornado.
+- *300:* indica que foi necessário um redirecionamento para dar sequência à solicitação.
+- *400:* indica erro na requisição, seja no caminho, na autorização ou no recurso. O status mais conhecido é o "404 - not found".
+- *500:* indica que o recurso existe, mas por um erro no servidor a ação não retornou o que foi solicitado.
