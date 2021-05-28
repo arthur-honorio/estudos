@@ -1,0 +1,1 @@
+Esses conteúdos são uma tentativa de resumo, interpretação e exercício de estudo baseado nos materias da plataforma gratuita de ensino https://app.rocketseat.com.br/discover .
