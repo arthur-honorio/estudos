@@ -57,7 +57,7 @@ Os mais comuns são:
 <a href="#inicio"> Voltar par o Início </a>
 
 
-<h3 id="aninamento"> Aninhamento e Hierarquia </h3>
+<h3 id="aninhamento"> Aninhamento e Hierarquia </h3>
 
 O aninhamento nada mais é do que a possibilidade de utilizar tags dentro de tags. Ao se fazer isso é adicionada uma hierarquia à estrutura, sendo os tags internos filhos dos externos e irmão dos tags de mesmo patamar.
 
